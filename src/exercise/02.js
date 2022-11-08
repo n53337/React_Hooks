@@ -4,7 +4,11 @@
 import * as React from "react";
 
 function Greeting({ initialName = "" }) {
-  const [name, setName] = React.useState(window.localStorage.getItem("name"));
+  // const [name, setName] = React.useState(window.localStorage.getItem("name"));
+  // ! using lazy initialization
+  const [name, setName] = React.useState(() =>
+    window.localStorage.getItem("name")
+  );
   React.useEffect(() => window.localStorage.setItem("name", name));
 
   function handleChange(event) {
