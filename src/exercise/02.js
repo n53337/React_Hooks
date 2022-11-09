@@ -9,7 +9,11 @@ function Greeting({ initialName = "" }) {
   const [name, setName] = React.useState(() =>
     window.localStorage.getItem("name")
   );
-  React.useEffect(() => window.localStorage.setItem("name", name));
+  // ! effect dependencies
+  React.useEffect(() => {
+    window.localStorage.setItem("name", name);
+    console.log("called");
+  }, [name]);
 
   function handleChange(event) {
     setName(event.target.value);
